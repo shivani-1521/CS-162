@@ -1,1 +1,2 @@
-# CS-162
+
+Berkeley Operating Systems MOOC
