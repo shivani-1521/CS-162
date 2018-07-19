@@ -14,11 +14,19 @@ Try info stack. Explain what you see.
 
 - #0  main (argc=1, argv=0x7fffffffe698) at wc.c:105
 
-  Each time a program performs a function call, information about the call is generated. That information includes location of call in the programm (wc.c: 105), the arguments of the call (argument counter = 1) and the local variables of the function being called.
+  Each time a program performs a function call, information about the call is generated. 
+  That information includes location of call in the programm (wc.c: 105), the arguments of the call (argument counter = 1) and the local variables of the function being called.
 
-  The information is saved in a block of data called stack frame. The stack frames are located in a region of memory called the call stack. The call stack is divided into contiguous frames, each frame contains data associated with one call to a function. Each time a function returns, the frame for that function invocation is eliminated. If function is recursive, there can be many frames for the same function. The frame for the function in which execution is actually occurring is called the innermost frame. The frame for function main is the outermost frame.
+  The information is saved in a block of data called stack frame. The stack frames are located in a region of memory called the call stack.
+  The call stack is divided into contiguous frames, each frame contains data associated with one call to a function. 
+  Each time a function returns, the frame for that function invocation is eliminated. 
+  If function is recursive, there can be many frames for the same function. 
+  The frame for the function in which execution is actually occurring is called the innermost frame. 
+  The frame for function main is the outermost frame.
 
-  Inside program, stack frames are identified by their address. This address is kept in a register called the frame pointer register, while execution is going on in that frame. GDB assigns numbers to all existing stack frames, starting with zero for the innermost frame, 1 for the frame that called it and so on upward.
+  Inside program, stack frames are identified by their address. 
+  This address is kept in a register called the frame pointer register, while execution is going on in that frame. 
+  GDB assigns numbers to all existing stack frames, starting with zero for the innermost frame, 1 for the frame that called it and so on upward.
 
 Try info frame. Explain what you see.
 
@@ -30,10 +38,52 @@ Try info frame. Explain what you see.
   Saved registers:
   rbp at 0x7fffffffe5b0, rip at 0x7fffffffe5b8
 
-  Address of frame :  0x7fffffffe5c0
-  Address of caller of this frame :  0x7fffffffe5c0  
-  Address of frame arguments :  0x7fffffffe5b0
-  Address of frame's local variables :  0x7fffffffe5b0
+  
+   -Address of frame :  0x7fffffffe5c0
+   -rip is the register for the next instruction to execute (program counter).
+   -saved rip is the return address, the instruction to execute in caller stack frame after returning from this callee stack.
+   -Address of caller of this frame :  0x7fffffffe5c0  
+   -Address of frame arguments :  0x7fffffffe5b0
+   -Address of frame's local variables :  0x7fffffffe5b0
+   -The previous frame's stack pointer points to 0x7fffffffe5c0 (at the moment of calling). It is also the starting memory address of called stack frame.
+   -Address of base of current stack frame : 0x7fffffffe5b0 
 
+  
 
 Try info registers. Which registers are holding aspects of the program that you recognise ?
+
+- info registers
+
+
+  rax            0x400951 4196689
+  rbx            0x0      0
+  rcx            0x0      0
+  rdx            0x7fffffffe6a8   140737488348840
+  rsi            0x7fffffffe698   140737488348824
+  rdi            0x1      1
+  rbp            0x7fffffffe5b0   0x7fffffffe5b0
+  rsp            0x7fffffffe590   0x7fffffffe590
+  r8             0x7ffff7dd4e80   140737351863936
+  r9             0x7ffff7dea600   140737351951872
+  r10            0x7fffffffe440   140737488348224
+  r11            0x7ffff7a32e50   140737348054608
+  r12            0x400620 4195872
+  r13            0x7fffffffe690   140737488348816
+  r14            0x0      0
+  r15            0x0      0
+  rip            0x400960 0x400960 <main+15>
+  eflags         0x206    [ PF IF ]
+  cs             0x33     51
+  ss             0x2b     43
+  ds             0x0      0
+  es             0x0      0
+  fs             0x0      0
+  gs             0x0      0
+
+
+
+
+
+
+
+
