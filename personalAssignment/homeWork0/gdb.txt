@@ -1,0 +1,39 @@
+What is the value of argv ?
+
+- argv = 0x7fffffffe678
+
+What is pointed to by argv ?
+
+- Contains pointer to argv[0], which is pointer to file location of wc.c . (argv is array of pointers)
+
+What is the address of the function main ?
+
+- 0x400951
+
+Try info stack. Explain what you see.
+
+- #0  main (argc=1, argv=0x7fffffffe698) at wc.c:105
+
+  Each time a program performs a function call, information about the call is generated. That information includes location of call in the programm (wc.c: 105), the arguments of the call (argument counter = 1) and the local variables of the function being called.
+
+  The information is saved in a block of data called stack frame. The stack frames are located in a region of memory called the call stack. The call stack is divided into contiguous frames, each frame contains data associated with one call to a function. Each time a function returns, the frame for that function invocation is eliminated. If function is recursive, there can be many frames for the same function. The frame for the function in which execution is actually occurring is called the innermost frame. The frame for function main is the outermost frame.
+
+  Inside program, stack frames are identified by their address. This address is kept in a register called the frame pointer register, while execution is going on in that frame. GDB assigns numbers to all existing stack frames, starting with zero for the innermost frame, 1 for the frame that called it and so on upward.
+
+Try info frame. Explain what you see.
+
+- Stack level 0, frame at 0x7fffffffe5c0:
+  rip = 0x400960 in main (wc.c:105); saved rip = 0x7ffff7a32f45
+  source language c.
+  Arglist at 0x7fffffffe5b0, args: argc=1, argv=0x7fffffffe698
+  Locals at 0x7fffffffe5b0, Previous frame's sp is 0x7fffffffe5c0
+  Saved registers:
+  rbp at 0x7fffffffe5b0, rip at 0x7fffffffe5b8
+
+  Address of frame :  0x7fffffffe5c0
+  Address of caller of this frame :  0x7fffffffe5c0  
+  Address of frame arguments :  0x7fffffffe5b0
+  Address of frame's local variables :  0x7fffffffe5b0
+
+
+Try info registers. Which registers are holding aspects of the program that you recognise ?
