@@ -1,0 +1,14 @@
+What file format is used for this binary ? And what architecture is this compiled for?
+
+- file format elf64-x86-64
+  architecture: i386:x86-64
+
+What are some of the names of segment/sections you find ?
+
+What segment/sections contains main (the function) and what is the address of main ? (It should be the same as what you saw in gdb)
+
+Do you see the stack segment anywhere ? What about the heap ? Explain.
+
+
+
+
